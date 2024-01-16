@@ -13,8 +13,7 @@ function App() {
   return (
     <main className='h-screen my-8 flex gap-10'>
       <ProjectsSidebar onChange={handleProjectButton} />
-      {/* <NewProject /> */}
-      {/* <DefaultBackground /> */}
+
       {!newProject ? (
         <DefaultBackground onChange={handleProjectButton} />
       ) : (
