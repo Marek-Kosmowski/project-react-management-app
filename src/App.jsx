@@ -1,9 +1,11 @@
+import NewProject from './components/NewProject';
 import ProjectsSidebar from './components/ProjectsSidebar';
 
 function App() {
   return (
-    <main className='w-screen my-8 px-8 py-16'>
+    <main className='h-screen my-8 flex gap-10'>
       <ProjectsSidebar />
+      <NewProject />
     </main>
   );
 }
