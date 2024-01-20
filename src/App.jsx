@@ -9,7 +9,7 @@ function App() {
     projects: [],
   });
 
-  const handleNewProjectButton = () => {
+  const handleNewProjectButton = (inputIdentifier, newValue) => {
     setNewProject((prevState) => {
       return {
         ...prevState,
@@ -20,17 +20,22 @@ function App() {
 
   let content;
 
-  console.log(newProject.projectId);
+  console.log(newProject);
 
   if (newProject.projectId === null) {
-    content = <NewProject />;
+    content = (
+      <NewProject onChange={handleNewProjectButton} inputData={newProject} />
+    );
   } else if (newProject.projectId === undefined) {
     content = <DefaultBackground onChange={handleNewProjectButton} />;
   }
 
   return (
     <main className='h-screen my-8 flex gap-10'>
-      <ProjectsSidebar onChange={handleNewProjectButton} />
+      <ProjectsSidebar
+        onChange={handleNewProjectButton}
+        inputData={newProject}
+      />
 
       {/* {!newProject ? (
         <DefaultBackground onChange={handleNewProjectButton} />

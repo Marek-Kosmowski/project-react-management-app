@@ -1,7 +1,25 @@
+import { useRef } from 'react';
+
 import Input from './Input';
 import Button from './Button';
 
-export default function NewProject({ onChange }) {
+export default function NewProject({ onChange, inputData }) {
+  let { projectId } = inputData;
+
+  const createNewProjectButton = () => {
+    projectId += 1;
+    inputData.projects.push({
+      title: inputTitle.current.value,
+      description: inputDescription.current.value,
+      dueTo: inputDueTo.current.value,
+    });
+    onChange();
+  };
+
+  const inputTitle = useRef();
+  const inputDescription = useRef();
+  const inputDueTo = useRef();
+
   return (
     <div className='w-[32rem] mt-16'>
       <menu className='flex justify-end	items-center gap-6'>
@@ -14,13 +32,18 @@ export default function NewProject({ onChange }) {
           </button>
         </li>
         <li>
-          <Button>Save</Button>
+          <Button onClick={createNewProjectButton}>Save</Button>
         </li>
       </menu>
       <div>
-        <Input label='Title' type='text' />
-        <Input label='Description' textarea />
-        <Input label='Due To' type='date' />
+        <Input ref={inputTitle} label='Title' type='text' id='title' />
+        <Input
+          ref={inputDescription}
+          label='Description'
+          id='description'
+          textarea
+        />
+        <Input ref={inputDueTo} label='Due To' type='date' id='dueTo' />
       </div>
     </div>
   );

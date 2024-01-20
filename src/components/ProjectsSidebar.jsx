@@ -1,6 +1,8 @@
 import Button from './Button';
 
-export default function ProjectsSidebar({ onChange }) {
+export default function ProjectsSidebar({ onChange, inputData }) {
+  const { projects } = inputData;
+
   return (
     <aside className='w-1/3  bg-gray-800 py-16 px-10 text-stone-50 md:w-72 rounded-r-xl '>
       <h2 className='mb-8 font-bold uppercase font-roboto md:text-2xl'>
@@ -9,7 +11,11 @@ export default function ProjectsSidebar({ onChange }) {
       <div>
         <Button onClick={onChange}>+ Add Project</Button>
       </div>
-      <ul></ul>
+      <ul>
+        {projects.map((project) => {
+          return <li key={inputData.projectId}>{project.title}</li>;
+        })}
+      </ul>
     </aside>
   );
 }
