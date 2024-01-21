@@ -13,7 +13,17 @@ export default function ProjectsSidebar({ onChange, inputData }) {
       </div>
       <ul>
         {projects.map((project) => {
-          return <li key={inputData.projectId}>{project.title}</li>;
+          return (
+            <div className='flex justify-start'>
+              <li
+                className='mt-2 mb-2 cursor-pointer py-1 px-3 hover:border-b-4 hover:border-gray-600'
+                onClick={() => console.log('works')}
+                key={inputData.projectId}
+              >
+                {project.title}
+              </li>
+            </div>
+          );
         })}
       </ul>
     </aside>
