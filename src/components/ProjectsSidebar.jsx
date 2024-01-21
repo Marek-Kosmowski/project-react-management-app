@@ -16,7 +16,7 @@ export default function ProjectsSidebar({ onChange, inputData }) {
           return (
             <div className='flex justify-start'>
               <li
-                className='mt-2 mb-2 cursor-pointer py-1 px-3 hover:border-b-4 hover:border-gray-600'
+                className='mt-2 mb-2 cursor-pointer py-2 px-3 font-medium hover:border-b-4 hover:border-gray-600 hover:text-gray-400 hover:font-bold'
                 onClick={() => console.log('works')}
                 key={inputData.projectId}
               >
