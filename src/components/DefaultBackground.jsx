@@ -1,7 +1,7 @@
 import NoProjectImage from '../assets/no-projects.png';
 import Button from './Button';
 
-export default function DefaultBackground({ onChange }) {
+export default function DefaultBackground({ onStartAddProject }) {
   return (
     <div className='w-2/3 text-center mt-28'>
       <img
@@ -14,7 +14,7 @@ export default function DefaultBackground({ onChange }) {
       </h2>
       <p className='mb-4 text-gray-500'>Select a project or add a new one.</p>
       <p className='mt-6'>
-        <Button onClick={onChange}>Create new Project</Button>
+        <Button onClick={onStartAddProject}>Create new Project</Button>
       </p>
     </div>
   );
