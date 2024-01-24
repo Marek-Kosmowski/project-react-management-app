@@ -2,12 +2,19 @@ import NewProject from './components/NewProject';
 import ProjectsSidebar from './components/ProjectsSidebar';
 import DefaultBackground from './components/DefaultBackground';
 import { useState } from 'react';
-
+import DisplayProjectInfo from './components/DisplayProjectInfo';
 function App() {
   const [newProject, setNewProject] = useState({
     projectId: undefined,
     projects: [],
   });
+
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const handleSelectProjectBtn = (id) => {
+    const selected = newProject.projects.find((project) => project.id === id);
+    setSelectedProject(selected);
+  };
 
   const handleNewProjectButton = () => {
     setNewProject((prevState) => {
@@ -34,9 +41,9 @@ function App() {
 
   let content;
 
-  console.log(newProject);
+  // console.log(newProject);
 
-  if (newProject.projectId === null) {
+  if (newProject.projectId === null && !selectedProject) {
     content = (
       <NewProject
         // onChange={handleNewProjectButton}
@@ -53,6 +60,7 @@ function App() {
       <ProjectsSidebar
         onStartAddProject={handleNewProjectButton}
         inputData={newProject}
+        onSelect={handleSelectProjectBtn}
       />
 
       {/* {!newProject ? (
@@ -61,6 +69,7 @@ function App() {
         <NewProject onChange={() => setNewProject(false)} />
       )} */}
       {content}
+      {selectedProject && <DisplayProjectInfo inputData={newProject} />}
     </main>
   );
 }

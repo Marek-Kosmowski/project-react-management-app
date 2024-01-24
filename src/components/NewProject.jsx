@@ -21,7 +21,7 @@ export default function NewProject({ onChange, inputData, onAddProject }) {
     const enteredInputTitle = inputTitle.current.value;
     const enteredInputDescription = inputDescription.current.value;
     const enteredInputDueTo = inputDueTo.current.value;
-    
+
     onAddProject({
       title: enteredInputTitle,
       description: enteredInputDescription,
