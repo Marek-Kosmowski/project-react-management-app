@@ -41,7 +41,7 @@ function App() {
 
   let content;
 
-  // console.log(newProject);
+  console.log(selectedProject);
 
   if (newProject.projectId === null && !selectedProject) {
     content = (
@@ -69,7 +69,7 @@ function App() {
         <NewProject onChange={() => setNewProject(false)} />
       )} */}
       {content}
-      {selectedProject && <DisplayProjectInfo inputData={newProject} />}
+      {selectedProject && <DisplayProjectInfo onSelect={selectedProject} />}
     </main>
   );
 }
