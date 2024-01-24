@@ -44,6 +44,7 @@ function App() {
 
   let content;
 
+
   if (newProject.projectId === null && !selectedProject) {
     content = (
       <NewProject
@@ -68,9 +69,8 @@ function App() {
       ) : (
         <NewProject onChange={() => setNewProject(false)} />
       )} */}
-      {/* {content}
-      {selectedProject && <DisplayProjectInfo onSelect={selectedProject} />} */}
-      <Tasks />
+      {content}
+      {selectedProject && <DisplayProjectInfo onSelect={selectedProject} />}
     </main>
   );
 }

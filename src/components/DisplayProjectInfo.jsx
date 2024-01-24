@@ -1,3 +1,4 @@
+import Tasks from './Tasks';
 export default function DisplayProjectInfo({ onSelect }) {
   const { title, description, dueTo } = onSelect;
 
@@ -17,6 +18,7 @@ export default function DisplayProjectInfo({ onSelect }) {
         <p className='mb-4 font-light text-gray-400'>{dueTo}</p>
         <p className='mb-2 text-gray-600 font-medium '>{description}</p>
       </div>
+      <Tasks />
     </div>
   );
 }

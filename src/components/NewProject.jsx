@@ -9,14 +9,6 @@ export default function NewProject({ onChange, inputData, onAddProject }) {
   const inputDueTo = useRef();
 
   const saveNewProjectButton = () => {
-    // inputData.projects.push({
-    //   id: Math.floor(Math.random() * 1000),
-    //   title: inputTitle.current.value,
-    //   description: inputDescription.current.value,
-    //   dueTo: inputDueTo.current.value,
-    // });
-    // onChange();
-
 
     const enteredInputTitle = inputTitle.current.value;
     const enteredInputDescription = inputDescription.current.value;
