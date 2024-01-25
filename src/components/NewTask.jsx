@@ -1,23 +1,29 @@
-import { useRef } from 'react';
+import { useState } from 'react';
 
 export default function NewTask({ onCreate }) {
-  const inputRef = useRef();
+  const [inputTask, setInpuTask] = useState('');
 
-  const createNewTask = () => {
-    let enteredInputTask = inputRef.current.value;
+  const handleChange = (e) => {
+    setInpuTask(e.target.value);
+  };
+
+  const handleClickBtn = () => {
+    setInpuTask('');
+
     onCreate({
-      task: enteredInputTask,
+      task: inputTask,
     });
   };
 
   return (
     <div className='flex gap-4 mb-6'>
       <input
-        ref={inputRef}
+        onChange={handleChange}
         className='w-60 bg-gray-200 py-1 px-2 rounded focus:outline-none'
         type='text'
+        value={inputTask}
       />
-      <button onClick={createNewTask} className='font-medium text-gray-700'>
+      <button onClick={handleClickBtn} className='font-medium text-gray-700'>
         Add Task
       </button>
     </div>

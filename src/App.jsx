@@ -10,11 +10,12 @@ function App() {
   const [newProject, setNewProject] = useState({
     projectId: undefined,
     projects: [],
+    tasks: [],
   });
 
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const handleSelectProjectBtn = (id) => {
+  const handleSelectProjectBtn = (id) => { 
     const selected = newProject.projects.find((project) => project.id === id);
     setSelectedProject(selected);
   };
@@ -27,6 +28,45 @@ function App() {
       };
     });
   };
+console.log(selectedProject)
+  // const handleNewTaskBtn = (taskData) => {
+  //   setNewTasks((prevState) => {
+  //     const newTaskData = {
+  //       ...taskData,
+  //       id: Math.floor(Math.random() * 1000),
+  //     };
+  //     return {
+  //       ...prevState,
+  //       tasks: [...prevState.tasks, newTaskData],
+  //     };
+  //   });
+  // };
+
+  const handleAddTask = (taskData) => {
+    setNewProject((prevState) => {
+      const newTaskData = {
+        ...taskData,
+        projectId: selectedProject.id,
+        id: Math.floor(Math.random() * 1000),
+      };
+      return {
+        ...prevState,
+        tasks: [...prevState.tasks, newTaskData],
+      };
+    });
+  };
+
+
+  const handleRemoveTask = (id) => {
+    setNewProject((prevState) => {
+      return {
+        ...prevState,
+        tasks: prevState.tasks.filter((task) => task.id !== id),
+      };
+    });
+  };
+
+
 
   const handleAddNewProject = (projectData) => {
     setNewProject((prevState) => {
@@ -43,7 +83,6 @@ function App() {
   };
 
   let content;
-
 
   if (newProject.projectId === null && !selectedProject) {
     content = (
@@ -70,7 +109,14 @@ function App() {
         <NewProject onChange={() => setNewProject(false)} />
       )} */}
       {content}
-      {selectedProject && <DisplayProjectInfo onSelect={selectedProject} />}
+      {selectedProject && (
+        <DisplayProjectInfo
+          onSelect={selectedProject}
+          addTask={handleAddTask}
+          removeTask={handleRemoveTask}
+          projectData = {newProject}
+        />
+      )}
     </main>
   );
 }
