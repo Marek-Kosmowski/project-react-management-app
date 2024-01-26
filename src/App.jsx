@@ -4,8 +4,6 @@ import DefaultBackground from './components/DefaultBackground';
 import DisplayProjectInfo from './components/DisplayProjectInfo';
 import { useState } from 'react';
 
-import Tasks from './components/Tasks';
-
 function App() {
   const [newProject, setNewProject] = useState({
     projectId: undefined,
@@ -15,7 +13,7 @@ function App() {
 
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const handleSelectProjectBtn = (id) => { 
+  const handleSelectProjectBtn = (id) => {
     const selected = newProject.projects.find((project) => project.id === id);
     setSelectedProject(selected);
   };
@@ -28,20 +26,12 @@ function App() {
       };
     });
   };
-console.log(selectedProject)
-  // const handleNewTaskBtn = (taskData) => {
-  //   setNewTasks((prevState) => {
-  //     const newTaskData = {
-  //       ...taskData,
-  //       id: Math.floor(Math.random() * 1000),
-  //     };
-  //     return {
-  //       ...prevState,
-  //       tasks: [...prevState.tasks, newTaskData],
-  //     };
-  //   });
-  // };
 
+  const selectedProjectTasks = newProject.tasks.filter(
+    (task) => task.projectId === selectedProject.id
+  );
+
+  console.log(selectedProject);
   const handleAddTask = (taskData) => {
     setNewProject((prevState) => {
       const newTaskData = {
@@ -49,14 +39,13 @@ console.log(selectedProject)
         projectId: selectedProject.id,
         id: Math.floor(Math.random() * 1000),
       };
+
       return {
         ...prevState,
         tasks: [...prevState.tasks, newTaskData],
       };
     });
   };
-
-
   const handleRemoveTask = (id) => {
     setNewProject((prevState) => {
       return {
@@ -66,15 +55,13 @@ console.log(selectedProject)
     });
   };
 
-
-
   const handleAddNewProject = (projectData) => {
     setNewProject((prevState) => {
       const newProjectData = {
         ...projectData,
         id: Math.floor(Math.random() * 1000),
+        tasks: [],
       };
-
       return {
         ...prevState,
         projects: [...prevState.projects, newProjectData],
@@ -85,17 +72,11 @@ console.log(selectedProject)
   let content;
 
   if (newProject.projectId === null && !selectedProject) {
-    content = (
-      <NewProject
-        // onChange={handleNewProjectButton}
-        // inputData={newProject}
-        onAddProject={handleAddNewProject}
-      />
-    );
+    content = <NewProject onAddProject={handleAddNewProject} />;
   } else if (newProject.projectId === undefined) {
     content = <DefaultBackground onStartAddProject={handleNewProjectButton} />;
   }
-
+  // console.log(newProject);
   return (
     <main className='h-screen my-8 flex gap-10'>
       <ProjectsSidebar
@@ -114,7 +95,8 @@ console.log(selectedProject)
           onSelect={selectedProject}
           addTask={handleAddTask}
           removeTask={handleRemoveTask}
-          projectData = {newProject}
+          projectData={newProject}
+          tasks={selectedProjectTasks}
         />
       )}
     </main>

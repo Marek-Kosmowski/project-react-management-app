@@ -15,6 +15,7 @@ export default function NewTask({ onCreate }) {
     });
   };
 
+
   return (
     <div className='flex gap-4 mb-6'>
       <input

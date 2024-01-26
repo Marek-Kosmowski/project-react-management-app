@@ -1,39 +1,5 @@
 import NewTask from './NewTask';
-import { useState } from 'react';
-export default function Tasks({ addNewTask, projectData, removeTask }) {
-  // const [newTasks, setNewTasks] = useState(projectData.tasks);
-  // const [selectedTask, setSelectedTask] = useState(null);
-  // const handleSelectTask = (id) => {
-  //   const selected = newTasks.tasks.find((task) => task.id === id);
-  //   setSelectedTask(selected);
-  // };
-  const { tasks } = projectData;
-  // console.log(projectData.tasks);
-  console.log(tasks);
-
-  // const { tasks } = newTasks;
-  // const handleNewTaskBtn = (taskData) => {
-  //   setNewTasks((prevState) => {
-  //     const newTaskData = {
-  //       ...taskData,
-  //       id: Math.floor(Math.random() * 1000),
-  //     };
-  //     return {
-  //       ...prevState,
-  //       tasks: [...prevState.tasks, newTaskData],
-  //     };
-  //   });
-  // };
-
-  // const handleRemoveTask = (id) => {
-  //   setNewTasks((prevState) => {
-  //     return {
-  //       ...prevState,
-  //       tasks: prevState.tasks.filter((task) => task.id !== id),
-  //     };
-  //   });
-  // };
-
+export default function Tasks({ addNewTask, removeTask, tasks }) {
   return (
     <section className='mt-6'>
       <h2 className='w-[36rem] mb-4 text-2xl font-bold text-gray-700'>Tasks</h2>

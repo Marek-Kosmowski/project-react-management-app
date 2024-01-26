@@ -1,7 +1,15 @@
 import Tasks from './Tasks';
-export default function DisplayProjectInfo({ onSelect, addTask, projectData, removeTask }) {
+export default function DisplayProjectInfo({
+  onSelect,
+  projectData,
+  addTask,
+  removeTask,
+  tasks,
+}) {
   const { title, description, dueTo, id } = onSelect;
-  // console.log(onSelect);
+  // console.log(projectData.projects)
+  const { projects } = projectData;
+  console.log(id);
   return (
     <div>
       <ul className='w-[36rem] mt-4 mb-2 flex justify-between'>
@@ -18,7 +26,15 @@ export default function DisplayProjectInfo({ onSelect, addTask, projectData, rem
         <p className='mb-4 font-light text-gray-400'>{dueTo}</p>
         <p className='mb-2 text-gray-600 font-medium '>{description}</p>
       </div>
-      {<Tasks projectId={id}  addNewTask={addTask} projectData = {projectData} removeTask={removeTask}/>}
+      {
+        <Tasks
+          projectId={id}
+          addNewTask={addTask}
+          projectData={projectData}
+          removeTask={removeTask}
+          tasks={tasks}
+        />
+      }
     </div>
   );
 }
