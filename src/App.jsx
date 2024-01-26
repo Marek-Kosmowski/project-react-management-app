@@ -11,6 +11,7 @@ function App() {
     tasks: [],
   });
 
+  // console.log(newProject);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const handleSelectProjectBtn = (id) => {
@@ -31,7 +32,6 @@ function App() {
     (task) => task.projectId === selectedProject.id
   );
 
-  console.log(selectedProject);
   const handleAddTask = (taskData) => {
     setNewProject((prevState) => {
       const newTaskData = {
@@ -65,6 +65,17 @@ function App() {
       return {
         ...prevState,
         projects: [...prevState.projects, newProjectData],
+        // projectId: undefined,
+      };
+    });
+  };
+
+  const handleRemoveProject = (id) => {
+    setNewProject((prevState) => {
+      return {
+        ...prevState,
+        projects: prevState.projects.filter((project) => project.id !== id),
+        // projectId: undefined,
       };
     });
   };
@@ -97,6 +108,7 @@ function App() {
           removeTask={handleRemoveTask}
           projectData={newProject}
           tasks={selectedProjectTasks}
+          removeProject={handleRemoveProject}
         />
       )}
     </main>

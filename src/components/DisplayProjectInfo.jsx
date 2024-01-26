@@ -5,6 +5,7 @@ export default function DisplayProjectInfo({
   addTask,
   removeTask,
   tasks,
+  removeProject,
 }) {
   const { title, description, dueTo, id } = onSelect;
   // console.log(projectData.projects)
@@ -17,7 +18,10 @@ export default function DisplayProjectInfo({
           <h2 className='text-2xl font-bold text-gray-700'>{title}</h2>
         </li>
         <li>
-          <button className=' text-gray-600 hover:text-gray-900 '>
+          <button
+            onClick={() => removeProject(id)}
+            className=' text-gray-600 hover:text-gray-900 '
+          >
             Delete
           </button>
         </li>
