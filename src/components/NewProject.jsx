@@ -4,12 +4,7 @@ import Input from './Input';
 import Button from './Button';
 import Modal from './Modal';
 
-export default function NewProject({
-  onChange,
-  inputData,
-  onAddProject,
-  onCancel,
-}) {
+export default function NewProject({ onAddProject, onCancel }) {
   const inputTitle = useRef();
   const inputDescription = useRef();
   const inputDueTo = useRef();
