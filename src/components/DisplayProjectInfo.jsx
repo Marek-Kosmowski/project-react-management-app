@@ -8,7 +8,13 @@ export default function DisplayProjectInfo({
   removeProject,
 }) {
   const { title, description, dueTo, id } = onSelect;
-  console.log(tasks);
+
+  const formattedDate = new Date(dueTo).toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
   return (
     <div>
       <ul className='w-[36rem] mt-4 mb-2 flex justify-between'>
@@ -31,7 +37,7 @@ export default function DisplayProjectInfo({
         </li>
       </ul>
       <div className='py-2 border-b-2 border-gray-300 '>
-        <p className='mb-4 font-light text-gray-400'>{dueTo}</p>
+        <p className='mb-4 font-light text-gray-400'>{formattedDate}</p>
         <p className='mb-2 text-gray-600 font-medium '>{description}</p>
       </div>
       {

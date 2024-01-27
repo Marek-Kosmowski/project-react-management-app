@@ -11,13 +11,17 @@ function App() {
     tasks: [],
   });
 
-  console.log(newProject);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const handleSelectProjectBtn = (id) => {
     const selected = newProject.projects.find((project) => project.id === id);
     setSelectedProject(selected);
-    // setNewProject(proj)
+    setNewProject((prevState) => {
+      return {
+        ...prevState,
+        projectId: null,
+      };
+    });
   };
 
   const handleNewProjectButton = () => {
@@ -27,6 +31,7 @@ function App() {
         projectId: null,
       };
     });
+    setSelectedProject(null);
   };
 
   const selectedProjectTasks = newProject.tasks.filter(
@@ -57,6 +62,15 @@ function App() {
     });
   };
 
+  const handleCancelButton = () => {
+    setNewProject((prevState) => {
+      return {
+        ...prevState,
+        projectId: undefined,
+      };
+    });
+  };
+
   const handleAddNewProject = (projectData) => {
     setNewProject((prevState) => {
       const newProjectData = {
@@ -70,7 +84,7 @@ function App() {
         projects: [...prevState.projects, newProjectData],
       };
     });
-    setSelectedProject(null);
+    setSelectedProject(undefined);
   };
 
   const handleRemoveProject = () => {
@@ -89,11 +103,15 @@ function App() {
   let content;
 
   if (newProject.projectId === null && !selectedProject) {
-    content = <NewProject onAddProject={handleAddNewProject} />;
+    content = (
+      <NewProject
+        onAddProject={handleAddNewProject}
+        onCancel={handleCancelButton}
+      />
+    );
   } else if (newProject.projectId === undefined && !selectedProject) {
     content = <DefaultBackground onStartAddProject={handleNewProjectButton} />;
   }
-  // console.log(newProject);
   return (
     <main className='h-screen my-8 flex gap-10'>
       <ProjectsSidebar
@@ -101,11 +119,7 @@ function App() {
         inputData={newProject}
         onSelect={handleSelectProjectBtn}
       />
-      {/* {!newProject ? (
-        <DefaultBackground onChange={handleNewProjectButton} />
-      ) : (
-        <NewProject onChange={() => setNewProject(false)} />
-      )} */}
+
       {content}
       {selectedProject && (
         <DisplayProjectInfo
