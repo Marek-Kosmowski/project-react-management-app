@@ -8,9 +8,7 @@ export default function DisplayProjectInfo({
   removeProject,
 }) {
   const { title, description, dueTo, id } = onSelect;
-  // console.log(projectData.projects)
-  const { projects } = projectData;
-  console.log(id);
+  console.log(tasks);
   return (
     <div>
       <ul className='w-[36rem] mt-4 mb-2 flex justify-between'>
@@ -18,12 +16,18 @@ export default function DisplayProjectInfo({
           <h2 className='text-2xl font-bold text-gray-700'>{title}</h2>
         </li>
         <li>
-          <button
-            onClick={() => removeProject(id)}
-            className=' text-gray-600 hover:text-gray-900 '
-          >
-            Delete
-          </button>
+          {tasks.length > 0 ? (
+            <button disabled className='cursor-not-allowed'>
+              Delete
+            </button>
+          ) : (
+            <button
+              onClick={removeProject}
+              className=' text-gray-600 hover:text-gray-900'
+            >
+              Delete
+            </button>
+          )}
         </li>
       </ul>
       <div className='py-2 border-b-2 border-gray-300 '>

@@ -11,12 +11,13 @@ function App() {
     tasks: [],
   });
 
-  // console.log(newProject);
+  console.log(newProject);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const handleSelectProjectBtn = (id) => {
     const selected = newProject.projects.find((project) => project.id === id);
     setSelectedProject(selected);
+    // setNewProject(proj)
   };
 
   const handleNewProjectButton = () => {
@@ -50,6 +51,7 @@ function App() {
     setNewProject((prevState) => {
       return {
         ...prevState,
+
         tasks: prevState.tasks.filter((task) => task.id !== id),
       };
     });
@@ -64,27 +66,31 @@ function App() {
       };
       return {
         ...prevState,
+        projectId: undefined,
         projects: [...prevState.projects, newProjectData],
-        // projectId: undefined,
       };
     });
+    setSelectedProject(null);
   };
 
-  const handleRemoveProject = (id) => {
+  const handleRemoveProject = () => {
     setNewProject((prevState) => {
       return {
         ...prevState,
-        projects: prevState.projects.filter((project) => project.id !== id),
-        // projectId: undefined,
+        projectId: undefined,
+        projects: prevState.projects.filter(
+          (project) => project.id !== selectedProject.id
+        ),
       };
     });
+    setSelectedProject(null);
   };
 
   let content;
 
   if (newProject.projectId === null && !selectedProject) {
     content = <NewProject onAddProject={handleAddNewProject} />;
-  } else if (newProject.projectId === undefined) {
+  } else if (newProject.projectId === undefined && !selectedProject) {
     content = <DefaultBackground onStartAddProject={handleNewProjectButton} />;
   }
   // console.log(newProject);
